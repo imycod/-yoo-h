@@ -1,0 +1,23 @@
+{
+  "name": "@imycode/h",
+  "version": "1.1.0",
+  "description": "企业项目开发实践中提取的工具函数",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imycod/yoo-h.git"
+  },
+  "author": "imycode",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imycod/yoo-h/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "homepage": "https://github.com/imycod/yoo-h#readme"
+}
