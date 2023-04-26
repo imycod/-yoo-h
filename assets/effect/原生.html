@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .item {
+            width: 300px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+        }
+
+        .animate-area {
+            position: absolute;
+            z-index: -1;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <div ref="magicArea" class="animate-area"></div>
+        <div ref="items" class="item" v-for="(item,index) in list" :key="index">{{item.text}}</div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.45/vue.global.prod.min.js"></script>
+    <script>
+        const { ref, createApp, onMounted } = Vue
+        function usePosition() {
+            const position = {
+                get(el) {
+                    const { top, left, width, height } = el.getBoundingClientRect()
+                    return {
+                        top,
+                        left,
+                        width,
+                        height,
+                    }
+                },
+                set(value, el) {
+                    el.style.top = value.top + 'px'
+                    el.style.left = value.left + 'px'
+                    el.style.width = value.width + 'px'
+                    el.style.height = value.height + 'px'
+                },
+            }
+            return {
+                position,
+                setPosition(aDom, bDom) {
+                    // a to b 
+                    const aPosition = position.get(aDom.length > 0 ? aDom[0] : aDom)
+                    position.set(aPosition, bDom)
+                }
+            }
+        }
+        function useMoveAnimate(el, position, options = null) {
+            const keyframes = [
+                {
+                    top: `${el.offsetTop}px`,
+                    left: `${el.offsetLeft}px`,
+                    width: `${el.offsetWidth}px`,
+                    height: `${el.offsetHeight}px`,
+                },
+                {
+                    top: `${position.top}px`,
+                    left: `${position.left}px`,
+                    width: `${position.width}px`,
+                    height: `${position.height}px`,
+                },
+            ]
+            const params = options || {
+                duration: 500,
+                easing: 'ease-in-out',
+                fill: 'forwards',
+            }
+            el.animate(keyframes, params)
+        }
+        const list = [
+            {
+                text: 'item1',
+            },
+            {
+                text: 'item2',
+            },
+            {
+                text: 'item3',
+            },
+        ]
+
+        const app = createApp({
+            setup() {
+                const magicArea = ref(null)
+                const items = ref(null)
+
+                onMounted(() => {
+                    // 1. 拿到dom
+                    const magicAreaDom = magicArea.value
+                    const itemsDom = items.value
+                    // 2. 设置位置
+                    const { setPosition, position } = usePosition()
+                    // const itemPosition = position.get(itemsDom)
+                    // position.set(itemPosition, magicAreaDom)
+                    setPosition(itemsDom, magicAreaDom)
+                    // 3. 监听鼠标移动
+                    itemsDom.forEach(element => {
+                        element.addEventListener('mouseenter', (e) => {
+                            const target = e.target
+                            // setPosition(target, magicAreaDom)
+                            const targetPosition = position.get(target)
+                            position.set(targetPosition, magicAreaDom)
+                            useMoveAnimate(magicAreaDom, position.get(target))
+                        })
+                    });
+
+                })
+                return {
+                    list,
+                    magicArea,
+                    items,
+                }
+            }
+        })
+        app.mount('#root')
+    </script>
+</body>
+
+</html>

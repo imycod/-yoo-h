@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /**
+ * CSS custom properties
+ */
+        :root {
+            --black: #404040;
+            --white: #fff;
+            --gray: rgba(64, 64, 64, 0.15);
+            --font-courgett: "Courgette", cursive;
+            --font-open-sans: "Open Sans", sans-serif;
+            --font-light: 300;
+        }
+
+        /**
+ * Functions
+ */
+        /**
+ * Placeholders
+ */
+        .u-visually-hidden {
+            clip: rect(1px, 1px, 1px, 1px);
+            clip-path: inset(50%);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+        .c-main-menu__list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        /**
+ * Styles
+ */
+        /**
+ * Elements
+ */
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            font-family: var(--font-open-sans);
+        }
+
+        /**
+ * Objects
+ */
+        .o-page {
+            max-width: 100%;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .o-header {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            padding: 1.25rem;
+        }
+
+        .o-main-section {
+            margin: 0 auto;
+            max-width: 37.5rem;
+        }
+
+        /**
+ * Components
+ */
+        .c-logo {
+            font-family: var(--font-courgett);
+            font-size: 1.625rem;
+            margin: 0;
+        }
+
+        .c-logo__link {
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .c-main-menu {
+            font-weight: 500;
+        }
+
+        .c-main-menu__list {
+            display: flex;
+        }
+
+        .c-main-menu__link {
+            color: var(--black);
+            display: inline-block;
+            font-size: 0.875rem;
+            letter-spacing: 0.25rem;
+            margin: 0 0.375rem;
+            padding: 0.625rem;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .c-main-heading {
+            font-size: 2.5rem;
+            font-weight: var(--font-light);
+            letter-spacing: 0.1875rem;
+            margin: 3.75rem 0;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .c-article__link {
+            align-items: center;
+            color: var(--black);
+            display: flex;
+            justify-content: space-between;
+            margin: 1.875rem 0;
+            padding: 1.25rem;
+            text-decoration: none;
+        }
+
+        .c-article__link * {
+            pointer-events: none;
+        }
+
+        .c-article__heading {
+            font-size: 1.25rem;
+            margin: 0.625rem 0;
+        }
+
+        .c-article__content {
+            line-height: 1.5;
+            margin: 0.625rem 0;
+        }
+
+        .c-article__img-wrapper {
+            height: 6.25rem;
+            margin-left: 1.25rem;
+            min-width: 10rem;
+            width: 10rem;
+        }
+
+        .c-article__img {
+            border-radius: 0.125rem;
+            display: block;
+            height: 100%;
+            filter: grayscale(1);
+            object-fit: cover;
+            transition: filter 0.3s ease-in;
+            width: 100%;
+        }
+
+        .c-article__link:hover .c-article__img {
+            filter: grayscale(0);
+        }
+
+        .c-magic-area {
+            position: absolute;
+            z-index: -1;
+        }
+
+        .c-magic-area--content {
+            background-color: var(--gray);
+            border-radius: 0.125rem;
+        }
+
+        .c-magic-area--content::before {
+            background-color: var(--black);
+            content: "";
+            height: 70%;
+            left: -0.1875rem;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0.375rem;
+        }
+       
+
+        .c-author__link::before {
+            background-color: rgba(64, 64, 64, 0.15);
+            width: 100%;
+        }
+
+        .c-author__link::after {
+            background-color: #f4b13e;
+            transition: width 0.3s ease-in-out;
+            width: 0;
+            will-change: width;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <div class="c-magic-area c-magic-area--content" data-target-class=".c-article__link" data-tween-back="false"
+        aria-hidden="true"></div>
+
+
+        <section class="o-main-section">
+
+            <article class="c-article">
+                <a class="c-article__link" href="#">
+                    <div>
+                        <header>
+                            <h3 class="c-article__heading">Ink transition with PNG sprite</h3>
+                        </header>
+                        <div class="c-article__content">
+                            Animate images with ink transition in PNG sprite.
+                        </div>
+                    </div>
+                    <div class="c-article__img-wrapper">
+                        <img class="c-article__img" src="https://assets.codepen.io/204808/shin-yun-bok-ink.png"
+                            alt="Ink transition with PNG sprite" />
+                    </div>
+                </a>
+            </article>
+
+            <article class="c-article">
+                <a class="c-article__link" href="#">
+                    <div>
+                        <header>
+                            <h3 class="c-article__heading">Responsive Mondrian art with CSS grid</h3>
+                        </header>
+                        <div class="c-article__content">
+                            Make a responsive Mondrian art with CSS grid layout.
+                        </div>
+                    </div>
+                    <div class="c-article__img-wrapper">
+                        <img class="c-article__img" src="https://assets.codepen.io/204808/css-grid-mondrian.png"
+                            alt="Responsive Mondrian art with CSS grid" />
+                    </div>
+                </a>
+            </article>
+
+            <article class="c-article">
+                <a class="c-article__link" href="#">
+                    <div>
+                        <header>
+                            <h3 class="c-article__heading">Space rocket with requestAnimationFrame</h3>
+                        </header>
+                        <div class="c-article__content">
+                            Create the space rocket animation with stars in different perspective.
+                        </div>
+                    </div>
+                    <div class="c-article__img-wrapper">
+                        <img class="c-article__img"
+                            src="https://assets.codepen.io/204808/17.Space-Rocket-with-requestAnimationFrame.png"
+                            alt="Responsive Mondrian art with CSS grid" />
+                    </div>
+                </a>
+            </article>
+        </section>
+
+
+  
+    <script src="https://cdn.bootcdn.net/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+
+    <script>
+
+        const magicAreas = [...document.querySelectorAll(".c-magic-area")];
+
+        const getAreaDetails = (area) => {
+            const width = area.clientWidth;
+            const height = area.clientHeight;
+
+            const position = area.getBoundingClientRect();
+            const top = position.top + window.scrollY;
+            const left = position.left;
+            console.log(position.top);
+            return {
+                left,
+                height,
+                top,
+                width
+            };
+        };
+
+        const setTweenArea = (link, magicArea) => {
+            const { left, height, top, width } = getAreaDetails(link);
+
+            gsap.set(magicArea, {
+                top,
+                left,
+                width,
+                height
+            });
+        };
+
+        const tweenMagicArea = (target, magicArea) => {
+            const { left, height, top, width } = getAreaDetails(target);
+
+            gsap.to(magicArea, 0.5, {
+                left,
+                top,
+                width,
+                height,
+                ease: Power3.easeInOut
+            });
+        };
+
+        const getMagicActiveElement = (links) => {
+            return links.filter((link) => {
+                return (
+                    link.classList.contains("is-magic-active") ||
+                    link.getAttribute("aria-current") === "page"
+                );
+            });
+        };
+
+        const moveMagicArea = (links, magicArea, isTweenBack) => {
+            const magicActiveElement = getMagicActiveElement(links);
+
+            links.map((link) => {
+                link.addEventListener("mouseenter", function (e) {
+                    tweenMagicArea(e.target, magicArea);
+                });
+
+                link.addEventListener("focus", function (e) {
+                    tweenMagicArea(e.target, magicArea);
+                });
+
+                if (isTweenBack && magicActiveElement.length) {
+                    link.addEventListener("mouseleave", function (e) {
+                        tweenMagicArea(magicActiveElement[0], magicArea);
+                    });
+
+                    link.addEventListener("focusout", function (e) {
+                        tweenMagicArea(magicActiveElement[0], magicArea);
+                    });
+                }
+            });
+        };
+
+        const setMagic = (links, magicArea) => {
+            // check if .is-magic-active || aria-current="page"
+            const magicActiveElement = getMagicActiveElement(links);
+
+            if (magicActiveElement.length) {
+                setTweenArea(magicActiveElement[0], magicArea);
+            } else {
+                setTweenArea(links[0], magicArea);
+            }
+        };
+
+        // const onResize = (links, magicArea) => {
+        //   setMagic(links, magicArea);
+        // };
+
+        const initMagic = ({ isResize } = { isResize: false }) => {
+            if (!magicAreas.length) return;
+
+            magicAreas.map((magicArea) => {
+                const targetMagicArea = magicArea.getAttribute("data-target-class");
+
+                const links = [...document.querySelectorAll(targetMagicArea)];
+
+                if (!links.length) return;
+
+                setMagic(links, magicArea);
+
+                if (!isResize) {
+                    const isTweenBack = magicArea.getAttribute("data-tween-back") === "true";
+
+                    moveMagicArea(links, magicArea, isTweenBack);
+                }
+            });
+        };
+
+        initMagic();
+
+        window.addEventListener(
+            "resize",
+            _.throttle(function () {
+                initMagic({ isResize: true });
+            }, 100)
+        );
+
+        VanillaTilt.init(document.querySelector(".c-fe30__inner"), {
+            max: 20,
+            perspective: 1000,
+            speed: 300
+        });
+
+    </script>
+</body>
+
+</html>

@@ -12,6 +12,7 @@ export default {
                     const { setPosition, position } = usePosition()
                     // Check if value.dom is a DOM element or a string
                     const dom = typeof value.dom === 'string' ? document.getElementById(value.dom) : value.dom;
+                    console.log('dom-',dom);
                     el.addEventListener('mouseenter', (e) => {
                         const target = e.target
                         setPosition(target, dom)
